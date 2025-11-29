@@ -9,12 +9,15 @@ def load_css():
             background-color: var(--background-color);
             color: var(--text-color);
         }
+        
+        /* Aggressively enforce text color on all common elements to prevent "invisible" text */
+        p, div, span, label, li, h1, h2, h3, h4, h5, h6, .stMarkdown, .stText, .stTextInput label, .stSelectbox label {
+            color: var(--text-color) !important;
+        }
 
         /* Main App Background - Uses Streamlit's native background */
         .stApp {
             background-color: var(--background-color);
-            /* Optional: Add a subtle texture or gradient that works in both modes if desired, 
-               but sticking to native bg is safest for "efficiency" and correctness. */
         }
 
         /* Glassmorphism Card - Adaptive */
@@ -32,10 +35,14 @@ def load_css():
             transform: translateY(-2px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Ensure card text is also forced to variable */
+        .card * {
+             color: var(--text-color) !important;
+        }
 
         /* Headers */
         h1, h2, h3, h4, h5, h6 {
-            color: var(--text-color) !important;
             font-weight: 700;
         }
         
@@ -61,9 +68,14 @@ def load_css():
         /* Inputs */
         .stTextInput>div>div>input, .stSelectbox>div>div>div, .stFileUploader {
             background-color: var(--secondary-background-color);
-            color: var(--text-color);
+            color: var(--text-color) !important;
             border: 1px solid var(--text-color); /* Subtle border */
             border-radius: 10px;
+        }
+        
+        /* Input Labels specifically */
+        .stTextInput label, .stSelectbox label, .stFileUploader label {
+            color: var(--text-color) !important;
         }
 
         /* Buttons */
@@ -78,7 +90,7 @@ def load_css():
 
         /* Tabs */
         .stTabs [data-baseweb="tab"] {
-            color: var(--text-color);
+            color: var(--text-color) !important;
             background-color: transparent;
         }
         
