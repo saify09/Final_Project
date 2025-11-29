@@ -18,9 +18,17 @@ DEPLOYMENT & USAGE GUIDE
 ------------------------------------------------------------------------------
 
 A. UPLOAD MATERIALS (Home Tab)
-   - You can upload PDF, DOCX, TXT, Images, or Video files.
-   - Drag and drop your file into the upload area.
-   - Click "Process File" to ingest the content into the AI's knowledge base.
+   - **Option 1: File Upload**
+     - Select "Upload Files".
+     - Drag and drop PDF, DOCX, TXT, Images, or Video files.
+     - Click "Process File".
+   
+   - **Option 2: Webcam**
+     - Select "Use Webcam".
+     - Allow browser camera permissions if asked.
+     - Click "Take Picture" to capture notes or diagrams.
+     - The image will be processed automatically.
+
    - Wait for the success message: "✅ Processing Complete!".
 
 B. STUDY MODE (Study Tab)
