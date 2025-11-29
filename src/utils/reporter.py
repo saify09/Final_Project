@@ -1,7 +1,7 @@
 from fpdf import FPDF
 import tempfile
 
-def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list) -> bytes:
+def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, analytics: dict = None) -> bytes:
     """
     Generates a PDF report and returns the bytes.
     """
@@ -15,6 +15,16 @@ def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list) -> 
     pdf.cell(0, 10, f"Student Name: {student_name}", ln=True)
     pdf.cell(0, 10, f"Roll Number: {roll_no}", ln=True)
     pdf.ln(10)
+    
+    # Analytics Section
+    if analytics:
+        pdf.set_font("Arial", 'B', 14)
+        pdf.cell(0, 10, "Performance Analytics", ln=True)
+        pdf.set_font("Arial", size=12)
+        pdf.cell(0, 10, f"Average Score: {analytics.get('average', 'N/A')}", ln=True)
+        pdf.cell(0, 10, f"Predicted Next Score: {analytics.get('predicted_score', 'N/A')}", ln=True)
+        pdf.cell(0, 10, f"Trend: {analytics.get('trend', 'N/A')}", ln=True)
+        pdf.ln(10)
     
     pdf.set_font("Arial", 'B', 14)
     pdf.cell(0, 10, "Quiz Performance History", ln=True)

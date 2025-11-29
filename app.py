@@ -241,7 +241,18 @@ def render_progress():
 
     st.divider()
     if st.button("📄 Download Progress Report (PDF)"):
-        pdf_bytes = generate_pdf_report("Saifuddin Hanif", "371344", st.session_state.quiz_history)
+        # Prepare analytics dict
+        analytics_data = {
+            "average": f"{np.mean(data):.2f}",
+            "predicted_score": f"{forecast['predicted_score']}" if forecast['predicted_score'] is not None else "N/A",
+            "trend": forecast['trend']
+        }
+        
+        # Use session state info or defaults
+        s_name = st.session_state.get("student_name", "Student")
+        s_roll = st.session_state.get("roll_no", "N/A")
+        
+        pdf_bytes = generate_pdf_report(s_name, s_roll, st.session_state.quiz_history, analytics_data)
         st.download_button(
             label="Click to Download",
             data=pdf_bytes,

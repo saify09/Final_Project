@@ -17,8 +17,16 @@ def card_end():
 def student_info_sidebar():
     with st.sidebar:
         st.image("https://img.icons8.com/color/96/000000/student-male--v1.png", width=100)
-        st.markdown("### Saifuddin Hanif")
-        st.markdown("**Roll No:** 371344")
+        
+        # Editable Student Info
+        if 'student_name' not in st.session_state:
+            st.session_state.student_name = "Saifuddin Hanif"
+        if 'roll_no' not in st.session_state:
+            st.session_state.roll_no = "371344"
+            
+        st.session_state.student_name = st.text_input("Student Name", st.session_state.student_name)
+        st.session_state.roll_no = st.text_input("Roll Number", st.session_state.roll_no)
+        
         st.markdown("**Trainer:** Sir Nasir Hussain")
         st.markdown("---")
         st.info("**Final Project:** AI & Data Science")
