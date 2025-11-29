@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv/
+
+# Build & Dist
+build/
+dist/
+*.spec
+
+# Logs
+*.log
+debug*.txt
+test_*.txt
+
+# Data & Models
+models/
+data/index/
+*.pkl
+*.bin
+*.onnx
+
+# Media (Optional - keep if needed for demo, but usually ignored)
+*.mp4
+*.avi
+*.mov
+# *.pdf # Keep PDFs for demo if small
+# *.png # Keep images for demo
+
+# IDE
+.vscode/
+.idea/
+.gemini/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
