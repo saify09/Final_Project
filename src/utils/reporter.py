@@ -12,7 +12,9 @@ def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, ana
     
     # Helper to sanitize text for Latin-1 (removes emojis/special chars)
     def sanitize(text):
-        return str(text).encode('latin-1', 'replace').decode('latin-1')
+        # Replace specific emojis with text equivalents first
+        text = str(text).replace("🚀", " (Rising)").replace("📉", " (Dropping)").replace("⚖️", " (Stable)")
+        return text.encode('latin-1', 'replace').decode('latin-1')
 
     pdf.set_font("Arial", size=12)
     pdf.ln(10)
