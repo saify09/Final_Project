@@ -118,10 +118,33 @@ def load_css():
             font-weight: 600;
         }
 
-        .stTabs [aria-selected="true"] {
-            background-color: transparent;
-            color: #4f46e5;
-            border-bottom: 2px solid #4f46e5;
+        /* Force Black Text on EVERYTHING */
+        html, body, [class*="css"], .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label, span, div {
+            color: #000000 !important;
+        }
+        
+        /* Specific overrides for Streamlit widgets to ensure they are black */
+        .stRadio label, .stCheckbox label, .stTextInput label, .stSelectbox label, .stFileUploader label {
+            color: #000000 !important;
+        }
+        
+        /* Keep the gradient title but ensure it is readable */
+        h1 {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Fallback if gradient fails */
+            color: #2563eb; 
+        }
+
+        /* Tabs - Force dark text */
+        .stTabs [data-baseweb="tab"] {
+            color: #000000 !important;
+        }
+        
+        /* Sidebar - Force dark text */
+        section[data-testid="stSidebar"] * {
+            color: #000000 !important;
         }
     </style>
     """
