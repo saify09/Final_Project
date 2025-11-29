@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import os
+from fpdf import FPDF
+import tempfile
 
 def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, analytics: dict = None) -> bytes:
     """
