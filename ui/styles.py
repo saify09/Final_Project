@@ -3,20 +3,30 @@ def load_css():
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
+        /* Theme-Aware Base Styles */
         html, body, [class*="css"] {
             font-family: 'Outfit', sans-serif;
-            background-color: #f0f2f5;
-            color: #000000 !important; /* Force black for maximum readability */
+            /* Use Streamlit's native variables for theme adaptability */
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
 
-        /* Gradient Background for Main Area */
+        /* Gradient Background - Adapts to Theme */
         .stApp {
+            /* Light Mode Gradient */
             background: linear-gradient(135deg, #f0f2f5 0%, #e0e7ff 100%);
         }
+        
+        /* Dark Mode Override for Background */
+        @media (prefers-color-scheme: dark) {
+            .stApp {
+                background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            }
+        }
 
-        /* Glassmorphism Card */
+        /* Glassmorphism Card - Theme Aware */
         .card {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.7); /* Light mode default */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 16px;
@@ -26,6 +36,16 @@ def load_css():
             margin-bottom: 24px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+        
+        /* Dark Mode Card */
+        @media (prefers-color-scheme: dark) {
+            .card {
+                background: rgba(31, 41, 55, 0.7); /* Dark mode card */
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            }
+        }
+
         .card:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.1);
@@ -33,7 +53,7 @@ def load_css():
 
         /* Headers */
         h1, h2, h3 {
-            color: #111827;
+            color: var(--text-color); /* Adapt to theme */
             font-weight: 700;
             letter-spacing: -0.02em;
         }
@@ -63,36 +83,27 @@ def load_css():
         /* Inputs */
         .stTextInput>div>div>input {
             border-radius: 10px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--secondary-background-color);
             padding: 10px 12px;
             transition: border-color 0.2s;
+            background-color: var(--secondary-background-color);
+            color: var(--text-color);
         }
         .stTextInput>div>div>input:focus {
             border-color: #4f46e5;
             box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
         }
 
-        /* Sidebar */
+        /* Sidebar - Theme Aware */
         section[data-testid="stSidebar"] {
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent sidebar */
+            background-color: var(--secondary-background-color);
             backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(229, 231, 235, 0.5);
-        }
-
-        /* Force dark text in sidebar for readability */
-        section[data-testid="stSidebar"] h1, 
-        section[data-testid="stSidebar"] h2, 
-        section[data-testid="stSidebar"] h3, 
-        section[data-testid="stSidebar"] p, 
-        section[data-testid="stSidebar"] span, 
-        section[data-testid="stSidebar"] div,
-        section[data-testid="stSidebar"] label {
-            color: #111827 !important;
+            border-right: 1px solid rgba(229, 231, 235, 0.1);
         }
         
-        /* Fix Sidebar Input Labels */
-        .st-emotion-cache-16idsys p {
-            color: #111827 !important;
+        /* Sidebar Text */
+        section[data-testid="stSidebar"] * {
+            color: var(--text-color) !important;
         }
         
         /* Metrics */
@@ -113,38 +124,38 @@ def load_css():
             white-space: pre-wrap;
             background-color: transparent;
             border-radius: 4px;
-            color: #4b5563;
+            color: var(--text-color);
             font-size: 1.1rem;
             font-weight: 600;
         }
 
-        /* Force Black Text on EVERYTHING */
-        html, body, [class*="css"], .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label, span, div {
-            color: #000000 !important;
+        .stTabs [aria-selected="true"] {
+            background-color: transparent;
+            color: #4f46e5;
+            border-bottom: 2px solid #4f46e5;
         }
         
-        /* Specific overrides for Streamlit widgets to ensure they are black */
-        .stRadio label, .stCheckbox label, .stTextInput label, .stSelectbox label, .stFileUploader label {
-            color: #000000 !important;
-        }
-        
-        /* Keep the gradient title but ensure it is readable */
-        h1 {
-            background: linear-gradient(90deg, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* Fallback if gradient fails */
-            color: #2563eb; 
-        }
-
-        /* Tabs - Force dark text */
-        .stTabs [data-baseweb="tab"] {
-            color: #000000 !important;
-        }
-        
-        /* Sidebar - Force dark text */
-        section[data-testid="stSidebar"] * {
-            color: #000000 !important;
+        /* Mobile Responsiveness */
+        @media only screen and (max-width: 768px) {
+            .card {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+            
+            h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            .stTabs [data-baseweb="tab"] {
+                font-size: 0.9rem;
+                padding: 0 8px;
+                gap: 8px;
+            }
+            
+            .stButton>button {
+                width: 100%;
+                padding: 10px 20px;
+            }
         }
     </style>
     """
