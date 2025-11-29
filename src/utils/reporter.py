@@ -35,14 +35,17 @@ def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, ana
         pdf.ln(10)
     
     # Chart Generation
-    if quiz_history and len(quiz_history) > 1:
+    if quiz_history:
         try:
             plt.figure(figsize=(6, 4))
-            plt.plot(range(1, len(quiz_history) + 1), quiz_history, marker='o', linestyle='-', color='#0b3d91')
+            # Use Bar Chart as requested
+            attempts = range(1, len(quiz_history) + 1)
+            plt.bar(attempts, quiz_history, color='#0b3d91', width=0.5)
             plt.title("Quiz Score Progression")
             plt.xlabel("Attempt")
             plt.ylabel("Score")
-            plt.grid(True)
+            plt.xticks(attempts) # Ensure integer ticks
+            plt.grid(axis='y', linestyle='--', alpha=0.7)
             
             # Save to temp file
             with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp_file:
