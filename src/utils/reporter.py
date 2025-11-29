@@ -10,10 +10,14 @@ def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, ana
     pdf.set_font("Arial", 'B', 16)
     pdf.cell(0, 10, "EduBuddy Progress Report", ln=True, align='C')
     
+    # Helper to sanitize text for Latin-1 (removes emojis/special chars)
+    def sanitize(text):
+        return str(text).encode('latin-1', 'replace').decode('latin-1')
+
     pdf.set_font("Arial", size=12)
     pdf.ln(10)
-    pdf.cell(0, 10, f"Student Name: {student_name}", ln=True)
-    pdf.cell(0, 10, f"Roll Number: {roll_no}", ln=True)
+    pdf.cell(0, 10, f"Student Name: {sanitize(student_name)}", ln=True)
+    pdf.cell(0, 10, f"Roll Number: {sanitize(roll_no)}", ln=True)
     pdf.ln(10)
     
     # Analytics Section
@@ -21,9 +25,9 @@ def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, ana
         pdf.set_font("Arial", 'B', 14)
         pdf.cell(0, 10, "Performance Analytics", ln=True)
         pdf.set_font("Arial", size=12)
-        pdf.cell(0, 10, f"Average Score: {analytics.get('average', 'N/A')}", ln=True)
-        pdf.cell(0, 10, f"Predicted Next Score: {analytics.get('predicted_score', 'N/A')}", ln=True)
-        pdf.cell(0, 10, f"Trend: {analytics.get('trend', 'N/A')}", ln=True)
+        pdf.cell(0, 10, f"Average Score: {sanitize(analytics.get('average', 'N/A'))}", ln=True)
+        pdf.cell(0, 10, f"Predicted Next Score: {sanitize(analytics.get('predicted_score', 'N/A'))}", ln=True)
+        pdf.cell(0, 10, f"Trend: {sanitize(analytics.get('trend', 'N/A'))}", ln=True)
         pdf.ln(10)
     
     pdf.set_font("Arial", 'B', 14)
