@@ -40,11 +40,16 @@ def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, ana
             plt.figure(figsize=(6, 4))
             # Use Bar Chart as requested
             attempts = range(1, len(quiz_history) + 1)
-            plt.bar(attempts, quiz_history, color='#0b3d91', width=0.5)
+            plt.bar(attempts, quiz_history, color='#0b3d91', width=0.5, label='Score')
+            
+            # Overlay Trend Line (Both)
+            plt.plot(attempts, quiz_history, color='#ff7f0e', marker='o', linestyle='-', linewidth=2, label='Trend')
+            
             plt.title("Quiz Score Progression")
             plt.xlabel("Attempt")
             plt.ylabel("Score")
             plt.xticks(attempts) # Ensure integer ticks
+            plt.legend()
             plt.grid(axis='y', linestyle='--', alpha=0.7)
             
             # Save to temp file
