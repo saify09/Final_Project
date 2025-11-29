@@ -8,3 +8,4 @@ plotly>=5.18.0
 easyocr>=1.7.1
 opencv-python-headless>=4.8.0
 fpdf>=1.7.2
+matplotlib

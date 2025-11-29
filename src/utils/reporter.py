@@ -1,5 +1,5 @@
-from fpdf import FPDF
-import tempfile
+import matplotlib.pyplot as plt
+import os
 
 def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, analytics: dict = None) -> bytes:
     """
@@ -32,6 +32,33 @@ def generate_pdf_report(student_name: str, roll_no: str, quiz_history: list, ana
         pdf.cell(0, 10, f"Trend: {sanitize(analytics.get('trend', 'N/A'))}", ln=True)
         pdf.ln(10)
     
+    # Chart Generation
+    if quiz_history and len(quiz_history) > 1:
+        try:
+            plt.figure(figsize=(6, 4))
+            plt.plot(range(1, len(quiz_history) + 1), quiz_history, marker='o', linestyle='-', color='#0b3d91')
+            plt.title("Quiz Score Progression")
+            plt.xlabel("Attempt")
+            plt.ylabel("Score")
+            plt.grid(True)
+            
+            # Save to temp file
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp_file:
+                plt.savefig(tmp_file.name, format='png')
+                tmp_path = tmp_file.name
+            
+            plt.close()
+            
+            # Embed in PDF
+            pdf.image(tmp_path, x=10, w=100)
+            pdf.ln(5)
+            
+            # Cleanup
+            os.remove(tmp_path)
+        except Exception as e:
+            print(f"Error generating chart: {e}")
+            pdf.cell(0, 10, "Chart generation failed.", ln=True)
+
     pdf.set_font("Arial", 'B', 14)
     pdf.cell(0, 10, "Quiz Performance History", ln=True)
     pdf.set_font("Arial", size=12)
