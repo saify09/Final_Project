@@ -1,0 +1,73 @@
+==============================================================================
+EduBuddy - AI-Powered Offline Learning Companion
+DEPLOYMENT & USAGE GUIDE
+==============================================================================
+
+1. APP ACCESS
+------------------------------------------------------------------------------
+*   **Live App URL**: https://edubuddy-saifuddinhanif.streamlit.app/
+*   **GitHub Repository**: https://github.com/saify09/Final_Project.git
+
+2. GETTING STARTED
+------------------------------------------------------------------------------
+1.  Open the App URL in your browser (Chrome/Edge recommended).
+2.  Wait for the app to wake up (it may take 1-2 minutes if it was sleeping).
+3.  Once loaded, you will see the "Home" tab with the "Upload Study Materials" section.
+
+3. STEP-BY-STEP USAGE
+------------------------------------------------------------------------------
+
+A. UPLOAD MATERIALS (Home Tab)
+   - You can upload PDF, DOCX, TXT, Images, or Video files.
+   - Drag and drop your file into the upload area.
+   - Click "Process File" to ingest the content into the AI's knowledge base.
+   - Wait for the success message: "✅ Processing Complete!".
+
+B. STUDY MODE (Study Tab)
+   - Switch to the "Study" tab.
+   - **Ask Questions**: Type any question related to your uploaded documents in the chat box.
+   - **Get Answers**: The AI will retrieve relevant info and generate a precise answer.
+   - **Summarize**: Click the "Summarize" button to get a quick summary of your documents.
+
+C. QUIZ MODE (Quiz Tab)
+   - Switch to the "Quiz" tab.
+   - Click "Generate Quiz" to create a multiple-choice quiz based on your content.
+   - Select your answers.
+   - **Instant Feedback**: 
+     - Correct answers turn GREEN.
+     - Wrong answers turn RED (and show the correct option).
+   - Your score is saved automatically.
+
+D. PROGRESS TRACKING (Progress Tab)
+   - Switch to the "Progress" tab.
+   - View your "Quiz Performance History" chart.
+   - **AI Forecast**: See a prediction of your next potential score based on your trend.
+   - **Download Report**: Click "Download PDF Report" to save your progress.
+
+4. THEME SETTINGS (Light vs Dark)
+------------------------------------------------------------------------------
+The app features two premium themes that work independently of your OS settings:
+
+*   **Light Mode**: Clean, white/gray professional look.
+*   **Dark Mode**: Modern, slate-blue/neon cyberpunk look.
+
+To switch:
+1.  Click the three dots (⋮) in the top-right corner of the app.
+2.  Go to "Settings".
+3.  Under "Theme", select "Light" or "Dark".
+
+5. TROUBLESHOOTING
+------------------------------------------------------------------------------
+*   **App Not Opening?**
+    - Refresh the page. Streamlit Cloud sometimes sleeps inactive apps.
+    - If you see an error, click "Manage App" -> "Reboot App".
+
+*   **"ModuleNotFoundError"?**
+    - This usually means a dependency is missing. The current build includes all necessary libraries (fpdf, opencv, etc.) in `requirements.txt` and system packages in `packages.txt`.
+
+*   **Slow Responses?**
+    - The app runs on a free cloud tier. Large PDF processing or video OCR might take a few moments. Please be patient.
+
+==============================================================================
+Developed by: Saifuddin Hanif
+==============================================================================
